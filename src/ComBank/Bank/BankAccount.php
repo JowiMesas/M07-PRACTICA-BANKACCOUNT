@@ -2,7 +2,7 @@
 
 /**
  * Created by VS Code.
- * User: JPortugal
+ * User: Joel Mesas
  * Date: 7/27/24
  * Time: 7:25 PM
  */
@@ -18,6 +18,40 @@ use ComBank\OverdraftStrategy\Contracts\OverdraftInterface;
 use ComBank\Support\Traits\AmountValidationTrait;
 use ComBank\Transactions\Contracts\BankTransactionInterface;
 
-class BankAccount
+class BankAccount implements BackAccountInterface
 {
+    private $balance;
+    private $status;
+    private $overdraft;
+    public function transaction($BankTransactionInterface) : void {
+
+    }
+    public function openAccount() : bool {
+        return true;
+    }
+    public function reopenAccount() : void {
+
+    }
+    public function closeAccount() : void {
+
+    }
+  
+    public function getOverdraft() : OverdraftInterface {
+
+    }
+    public function applyOverDraft($OverdraftInterface) : void {
+
+    }
+    public function setBalance($float) : void {
+        
+    }
+
+    /**
+     * Get the value of balance
+     */ 
+    public function getBalance(): float
+    {
+        return $this->balance;
+    }
+
     }
