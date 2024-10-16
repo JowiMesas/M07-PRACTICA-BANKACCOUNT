@@ -34,15 +34,17 @@ class BankAccount implements BackAccountInterface
         $this->balance += $BankTransactionInterface->getAmount();
     }
     public function openAccount() : bool {
-        $this->status = BackAccountInterface :: STATUS_OPEN;
+        $this->status = true;
         return $this->status;
     }
     public function reopenAccount() : void {
-        $this->status = true;
-
+        $this->status = BackAccountInterface :: STATUS_OPEN;
     }
     public function closeAccount() : void {
-        $this->status = false;
+        if(!this->status === ) {
+            $this->status = BackAccountInterface :: STATUS_CLOSED;
+
+        }
     }
   
     public function getOverdraft() : OverdraftInterface {
