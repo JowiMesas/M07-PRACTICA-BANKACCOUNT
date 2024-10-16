@@ -11,8 +11,16 @@ use ComBank\Bank\Contracts\BackAccountInterface;
 use ComBank\Exceptions\InvalidOverdraftFundsException;
 use ComBank\Transactions\Contracts\BankTransactionInterface;
 
-class WithdrawTransaction 
+class WithdrawTransaction implements BankTransactionInterface
 {
+    public function applyTransaction($BackAccountInterface) : float {
 
+    }
+    public function getTransactionInfo() : string {
+        return "";
+    }
+    public function getAmount() : float {
+        
+    }
    
 }

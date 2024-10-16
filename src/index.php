@@ -23,7 +23,10 @@ require_once 'bootstrap.php';
 pl('--------- [Start testing bank account #1, No overdraft] --------');
 try {
     // show balance account
+    $bankAccount1 = new BankAccount(0,true,false);
+    $bankAccount1-> setBalance(400);
 
+    pl('My balance :' . $bankAccount1->getBalance());
     // close account
 
     // reopen account
