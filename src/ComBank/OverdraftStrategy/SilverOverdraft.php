@@ -16,11 +16,11 @@ use ComBank\OverdraftStrategy\Contracts\OverdraftInterface;
 class SilverOverdraft implements OverdraftInterface
 {
     public function isGrantOverdraftFunds($float) : bool {
-return $float >= 0;
+return $float + $this->getOverdraftFundsAmount() >= 0;
     }
 
-    public function isOverdraftFundsAmount() : float {
-        return $float > amount;
+    public function getOverdraftFundsAmount() : float {
+        return 100.0;
     }
     
 }

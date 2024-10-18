@@ -16,9 +16,8 @@ class DepositTransaction  extends BaseTransaction implements BankTransactionInte
         $this->amount = $amount;
     }
 public function applyTransaction(BackAccountInterface $account) : float {
-$balance = $account->getBalance(); 
-$amountTransaction = $this->amount;
-return $balance += $amountTransaction;
+$newBalance = $account->getBalance() + $this->amount; 
+return $newBalance;
 
 }
 public function getTransactionInfo() : string {
