@@ -70,11 +70,11 @@ class BankAccountTest extends TestCase
 
         $bankAccount = new BankAccount(100.0);
         $bankAccount->applyOverdraft(new SilverOverdraft());        
-        $bankAccount->transaction(new WithdrawTransaction(201.0));// should fail
+        $bankAccount->transaction(new WithdrawTransaction(201.0));// should fai    public function testTransactionAfterAccountClosed(): voidl
     }
 
     // Test closing an account and performing a transaction after that, which should fail
-    public function testTransactionAfterAccountClosed(): void
+
     {
         $this->expectException(BankAccountException::class);
 

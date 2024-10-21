@@ -28,13 +28,17 @@ class BankAccount extends BankAccountException implements BackAccountInterface
     public function __construct($balance) {
         $this->balance = $balance;
         $this->status = BackAccountInterface::STATUS_OPEN;
+        $this-> overdraft = new NoOverdraft();
     }
     public function transaction(BankTransactionInterface $transaction) : void {
       if($this->status == BackAccountInterface::STATUS_OPEN) {
         try {
             $this->balance = $transaction->applyTransaction($this);
         } catch(BankAccountException $e) {
-            throw new BankAccountException($e->getMessage(), $e->getCode(), $e);
+            throw new BankAccountException($e->getMessage(), $e->getCode());
+        } catch(InvalidOverdraftFundsException $e) {
+            throw new FailedTransactionException($e->getMessage(), $e->getCode());
+
         }
       }
     }
@@ -46,13 +50,18 @@ class BankAccount extends BankAccountException implements BackAccountInterface
         }
     }
     public function reopenAccount() : void {
-        $this->status = BackAccountInterface :: STATUS_OPEN;
-        pl("My account is reopened");
+        if($this-> status == BackAccountInterface::STATUS_OPEN) {
+            throw new BankAccountException("The account is already opened");
+        } else {
+            $this->status = BackAccountInterface :: STATUS_OPEN;
+            echo " <br> My account is now reopened <br> ";
+        }
+
     }
     public function closeAccount() : void {
         if($this->openAccount()) {
             $this->status = BackAccountInterface :: STATUS_CLOSED;
-            pl("My account is closed");
+            echo " <br> My account is now closed <br>";
         }
     }
   
@@ -60,7 +69,7 @@ class BankAccount extends BankAccountException implements BackAccountInterface
         return $this->overdraft;
     }
     public function applyOverDraft(OverdraftInterface $overdraft) : void {
-
+        $this->overdraft = $overdraft;
     }
     public function setBalance($float) : void {
         $this->balance = $float;

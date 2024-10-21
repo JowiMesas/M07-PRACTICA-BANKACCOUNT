@@ -21,7 +21,7 @@ return $newBalance;
 
 }
 public function getTransactionInfo() : string {
-    return "";
+    return "DEPOSIT_TRANSACTION";
 }
 public function getAmount() : float {
     return $this->amount;
