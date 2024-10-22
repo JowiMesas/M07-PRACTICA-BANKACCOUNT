@@ -20,6 +20,7 @@ use ComBank\Transactions\Contracts\BankTransactionInterface;
 
 class BankAccount extends BankAccountException implements BackAccountInterface 
 {
+    use AmountValidationTrait;
     private $balance;
     private $status;
     private $overdraft;
@@ -40,6 +41,8 @@ class BankAccount extends BankAccountException implements BackAccountInterface
             throw new FailedTransactionException($e->getMessage(), $e->getCode());
 
         }
+      } else {
+        throw new BankAccountException("The account is already closed");
       }
     }
     public function openAccount() : bool {
@@ -62,7 +65,7 @@ class BankAccount extends BankAccountException implements BackAccountInterface
         if($this->openAccount()) {
             $this->status = BackAccountInterface :: STATUS_CLOSED;
             echo " <br> My account is now closed <br>";
-        }
+        } 
     }
   
     public function getOverdraft() : OverdraftInterface {

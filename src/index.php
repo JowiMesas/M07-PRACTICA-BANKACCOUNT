@@ -105,3 +105,4 @@ try {
 } catch (BankAccountException $e) {
     pl($e->getMessage());
 }
+$bankAccount2->closeAccount();

@@ -13,9 +13,11 @@ use ComBank\Transactions\Contracts\BankTransactionInterface;
 class DepositTransaction  extends BaseTransaction implements BankTransactionInterface
 {
     public function __construct($amount) {
+        parent::validateAmount(amount: $amount);
         $this->amount = $amount;
     }
 public function applyTransaction(BackAccountInterface $account) : float {
+    parent::validateAmount(amount: $this->amount);
 $newBalance = $account->getBalance() + $this->amount; 
 return $newBalance;
 

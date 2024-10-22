@@ -74,7 +74,7 @@ class BankAccountTest extends TestCase
     }
 
     // Test closing an account and performing a transaction after that, which should fail
-
+    public function testTransactionAfterAccountClosed(): void
     {
         $this->expectException(BankAccountException::class);
 
