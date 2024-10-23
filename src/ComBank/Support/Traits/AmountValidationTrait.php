@@ -22,7 +22,7 @@ trait AmountValidationTrait
         if(!is_numeric($amount)) {
             throw new InvalidArgsException("The amount has to be numerical");
         }
-        if($amount < 0) {
+        if($amount <= 0) {
             throw new ZeroAmountException("The amount cannot be zero");
         }
     }
