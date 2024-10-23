@@ -42,7 +42,7 @@ class BankAccount extends BankAccountException implements BackAccountInterface
 
         }
       } else {
-        throw new BankAccountException("The account is already closed");
+        throw new BankAccountException(" Error: The account is already closed");
       }
     }
     public function openAccount() : bool {
@@ -65,6 +65,8 @@ class BankAccount extends BankAccountException implements BackAccountInterface
         if($this->openAccount()) {
             $this->status = BackAccountInterface :: STATUS_CLOSED;
             echo " <br> My account is now closed <br>";
+        } else {
+            throw new BankAccountException("Error: The account is already closed");
         } 
     }
   
