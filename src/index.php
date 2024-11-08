@@ -106,3 +106,7 @@ try {
 } catch (BankAccountException $e) {
     pl($e->getMessage());
 }
+ //---[Bank account 3]---/
+pl('--------- [Start testing national account (No conversion)] --------');
+$bankAccount3 = new InternationalBankAccount(500);
+$bankAccount3->getConvertedBalance();
