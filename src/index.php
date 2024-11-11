@@ -14,6 +14,8 @@ use ComBank\Transactions\WithdrawTransaction;
 use ComBank\Exceptions\BankAccountException;
 use ComBank\Exceptions\FailedTransactionException;
 use ComBank\Exceptions\ZeroAmountException;
+use ComBank\Bank\BankAccount\InternationalBankAccount;
+use ComBank\Bank\BankAccount\NationalBankAccount;
 
 require_once 'bootstrap.php';
 
@@ -108,5 +110,10 @@ try {
 }
  //---[Bank account 3]---/
 pl('--------- [Start testing national account (No conversion)] --------');
-$bankAccount3 = new InternationalBankAccount(500);
-$bankAccount3->getConvertedBalance();
+$bankAccount3 = new NationalBankAccount(500);
+pl("My balance: " . $bankAccount3->getBalance());
+
+pl('--------- [Start testing International account (Dollar conversion)] --------');
+
+$bankAccount4 = new InternationalBankAccount(300);
+$bankAccount4->getConvertedBalance();

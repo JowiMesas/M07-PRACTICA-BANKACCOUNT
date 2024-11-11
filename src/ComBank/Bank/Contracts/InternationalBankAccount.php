@@ -1,5 +1,5 @@
 <?php
-
+namespace ComBank\Bank\BankAccount;
 use ComBank\Bank\BankAccount;
 use ComBank\Support\Traits\ApiTrait;
 class InternationalBankAccount extends BankAccount {
