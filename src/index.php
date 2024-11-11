@@ -14,9 +14,8 @@ use ComBank\Transactions\WithdrawTransaction;
 use ComBank\Exceptions\BankAccountException;
 use ComBank\Exceptions\FailedTransactionException;
 use ComBank\Exceptions\ZeroAmountException;
-use ComBank\Bank\BankAccount\InternationalBankAccount;
-use ComBank\Bank\BankAccount\NationalBankAccount;
-
+use ComBank\Bank\InternationalBankAccount;
+use ComBank\Bank\NationalBankAccount;
 require_once 'bootstrap.php';
 
 

@@ -1,7 +1,5 @@
 <?php
-namespace ComBank\Bank\BankAccount;
-use ComBank\Bank\BankAccount;
-use ComBank\Support\Traits\ApiTrait;
+namespace ComBank\Bank;
 class InternationalBankAccount extends BankAccount {
 
 function getConvertedBalance(): float {

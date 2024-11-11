@@ -17,7 +17,7 @@ trait ApiTrait {
      return $convertJson->convertedAmount;
     }
 
-    function validateEmail(string $email) : bool {
+    // function validateEmail(string $email) : bool {
 
-    }
+    // }
 }
