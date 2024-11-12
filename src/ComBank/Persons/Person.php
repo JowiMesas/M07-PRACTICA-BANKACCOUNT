@@ -9,7 +9,9 @@ class Person {
     public function __construct($name, $idCard, $email){
         $this-> name = $name;
         $this->idCard = $idCard;
-        $this->email = $email;
+        if($this->validateEmail($email)) {
+            $this->email = $email;
+        }
     }
     public function getEmail()
     {
