@@ -110,9 +110,10 @@ try {
  //---[Bank account 3]---/
 pl('--------- [Start testing national account (No conversion)] --------');
 $bankAccount3 = new NationalBankAccount(500);
-pl("My balance: " . $bankAccount3->getBalance());
+pl("My balance: " . number_format($bankAccount3->getBalance(), 1)  . "€ (" . $bankAccount3->getCurrency() . ")");
 
 pl('--------- [Start testing International account (Dollar conversion)] --------');
 
 $bankAccount4 = new InternationalBankAccount(300);
-$bankAccount4->getConvertedBalance();
+pl("My balance: " . number_format($bankAccount4->getBalance(),1) . "€  (" . $bankAccount4->getCurrency() . ")") ;
+pl("My balance converted: " . number_format($bankAccount4->getConvertedBalance(),2) . " $ (" . $bankAccount4->getConvertedCurrency() . ")");

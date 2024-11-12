@@ -8,6 +8,6 @@ function getConvertedBalance(): float {
 }
 function getConvertedCurrency() : string {
 
-    return 'USD';
+    return $this-> currency = 'USD';
 }
 }
