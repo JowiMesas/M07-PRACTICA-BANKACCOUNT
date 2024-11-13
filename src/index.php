@@ -16,6 +16,8 @@ use ComBank\Exceptions\FailedTransactionException;
 use ComBank\Exceptions\ZeroAmountException;
 use ComBank\Bank\InternationalBankAccount;
 use ComBank\Bank\NationalBankAccount;
+use ComBank\Exceptions\PersonException;
+use ComBank\Persons\Person;
 require_once 'bootstrap.php';
 
 
@@ -109,11 +111,23 @@ try {
 }
  //---[Bank account 3]---/
 pl('--------- [Start testing national account (No conversion)] --------');
-$bankAccount3 = new NationalBankAccount(500);
-pl("My balance: " . number_format($bankAccount3->getBalance(), 1)  . "€ (" . $bankAccount3->getCurrency() . ")");
 
+
+
+$bankAccount3 = new NationalBankAccount(500, "EUR");
+pl("My balance: " . number_format($bankAccount3->getBalance(), 1)  . "€ (" . $bankAccount3->getCurrency() . ")");
 pl('--------- [Start testing International account (Dollar conversion)] --------');
 
 $bankAccount4 = new InternationalBankAccount(300);
 pl("My balance: " . number_format($bankAccount4->getBalance(),1) . "€  (" . $bankAccount4->getCurrency() . ")") ;
 pl("My balance converted: " . number_format($bankAccount4->getConvertedBalance(),2) . " $ (" . $bankAccount4->getConvertedCurrency() . ")");
+
+pl('--------- [Start testing national account] --------');
+
+$person = new Person("John", "123456783459", "john.doe@gmail.com");
+
+$bankAccountPerson = new NationalBankAccount(500, "EUR", $person);
+
+pl('--------- [Start testing International account] --------');
+$person2 = new Person("Jane", "453675869234", "jane.doe@invalid-com");
+$bankAccountPerson2 = new NationalBankAccount(400, "EUR", $person);

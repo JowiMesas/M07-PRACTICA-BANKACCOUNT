@@ -27,7 +27,7 @@ class BankAccount extends BankAccountException implements BackAccountInterface
     protected  $status;
     protected  $overdraft;
     protected $currency;
-    protected Person $holder;
+    protected ?Person $holder;
 
 
     public function __construct($balance, string $currency = 'EUR', Person $holder = null) {
@@ -35,7 +35,9 @@ class BankAccount extends BankAccountException implements BackAccountInterface
         $this->status = BackAccountInterface::STATUS_OPEN;
         $this-> overdraft = new NoOverdraft();
         $this-> currency = $currency;
+
         $this->holder = $holder;
+        
     }
     public function transaction(BankTransactionInterface $transaction) : void {
       if($this->status == BackAccountInterface::STATUS_OPEN) {
@@ -97,14 +99,4 @@ class BankAccount extends BankAccountException implements BackAccountInterface
         return $this->currency;
     }
 
-   
-    public function getHolder()
-    {
-        return $this->holder;
-    }
-
-    public function setHolder($holder)
-    {
-        $this->holder = $holder;
-    }
     }

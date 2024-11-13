@@ -19,20 +19,22 @@ trait ApiTrait {
     }
 
     function validateEmail(string $email) : bool {
-    $ch = curl_init();
-    $api = "https://api.usercheck.com/email/$email?key=PaHQqILPLJDHrxXAf7Kans589FwvdjF2";
-    curl_setopt($ch, CURLOPT_URL, $api);
-    curl_setopt_array($ch, array(
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_SSL_VERIFYPEER => false,
-    ));
-    $result = curl_exec(handle: $ch);
-    curl_close(handle: $ch);
-    $convertJson = json_decode(json: $result);
-    if($convertJson->mx && !$convertJson->disposable && $convertJson->status==200) {
-        return true;
-    } else {
-        return false;
-    }
+            $ch = curl_init();
+            $api = "https://api.usercheck.com/email/$email?key=PaHQqILPLJDHrxXAf7Kans589FwvdjF2";
+            curl_setopt($ch, CURLOPT_URL, $api);
+            curl_setopt_array($ch, array(
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_SSL_VERIFYPEER => false,
+            ));
+            $result = curl_exec(handle: $ch);
+            curl_close(handle: $ch);
+            $convertJson = json_decode(json: $result);
+            if($convertJson->mx && !$convertJson->disposable && $convertJson->status==200) {
+                return true;
+            } else {
+                return false;
+            }
+
+
     }
 }
