@@ -1,6 +1,5 @@
 <?php
 namespace ComBank\Persons;
-use ComBank\Exceptions\PersonException;
 use ComBank\Support\Traits\ApiTrait;
 class Person {
     use ApiTrait;
@@ -15,8 +14,8 @@ class Person {
             pl("validating email: " .$this->getEmail());
             pl("Email is valid");
         } else {
-            pl("validating email: " .$this->getEmail());
-            pl(mixed: "Error: Invalid email address: " .$this->getEmail());
+            pl("validating email: " . $email);
+            pl(mixed: "Error: Invalid email address: " . $email);
     }
 }
     public function getEmail()

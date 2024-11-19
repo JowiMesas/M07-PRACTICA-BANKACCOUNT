@@ -28,9 +28,13 @@ trait ApiTrait {
             ));
             $result = curl_exec(handle: $ch);
             curl_close(handle: $ch);
-            $convertJson = json_decode(json: $result);
-            if($convertJson->mx && !$convertJson->disposable && $convertJson->status==200) {
-                return true;
+            $convertJson = json_decode ($result, true);
+            if(isset($convertJson['mx']) && isset($convertJson['disposable'])) {
+                if ($convertJson['mx']&& !$convertJson['disposable']) {
+                    return true;
+                } else {
+                    return false;
+                }
             } else {
                 return false;
             }

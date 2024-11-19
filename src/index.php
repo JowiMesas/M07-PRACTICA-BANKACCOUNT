@@ -130,4 +130,4 @@ $bankAccountPerson = new NationalBankAccount(500, "EUR", $person);
 
 pl('--------- [Start testing International account] --------');
 $person2 = new Person("Jane", "453675869234", "jane.doe@invalid-com");
-$bankAccountPerson2 = new NationalBankAccount(400, "EUR", $person);
+$bankAccountPerson2 = new InternationalBankAccount(400, "EUR", $person);
