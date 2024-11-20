@@ -8,16 +8,22 @@
  */
 
 use ComBank\Bank\Contracts\BackAccountInterface;
+use ComBank\Exceptions\FailedTransactionException;
+use ComBank\Support\Traits\ApiTrait;
 use ComBank\Transactions\Contracts\BankTransactionInterface;
 
 class DepositTransaction  extends BaseTransaction implements BankTransactionInterface
 {
+ use ApiTrait;
     public function __construct($amount) {
         parent::validateAmount(amount: $amount);
         $this->amount = $amount;
     }
 public function applyTransaction(BackAccountInterface $account) : float {
-    parent::validateAmount(amount: $this->amount);
+    if($this->detectFraud($this)) {
+        throw new FailedTransactionException("Blocked  by possible fraud");
+    }
+ parent::validateAmount(amount: $this->amount);
 $newBalance = $account->getBalance() + $this->amount; 
 return $newBalance;
 

@@ -16,4 +16,6 @@ interface BankTransactionInterface
 
     public function getTransactionInfo() : string;
     public function getAmount() : float;
+    const TRANSACTION_BLOCKED = 'blocked';
+    const TRANSACTION_ALLOWED = 'allowed';
 }

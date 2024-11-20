@@ -58,11 +58,17 @@ trait ApiTrait {
         $fraud = false;
         foreach ($convertJson as $key => $value) {
             if($convertJson[$key]["movementType"]==$transaction->getTransactionInfo()) {
-                if($convertJson[$key]["amount"] >= $giveAmount && $convertJson[$key]["max_amount"] <= $giveAmount) {
-                    
+                if($convertJson[$key]["amount"] <= $giveAmount && $convertJson[$key]["max_amount"] >= $giveAmount) {
+                    if($convertJson[$key]["action"]==BankTransactionInterface::TRANSACTION_BLOCKED) {
+                        $fraud = true;
+                        break;
+                    } else {
+                        var_dump($convertJson[$key]["action"]==BankTransactionInterface::TRANSACTION_BLOCKED);
+                        $fraud = false;
+                    }
                 }
             }
         }
-
+        return $fraud;
     }
 }

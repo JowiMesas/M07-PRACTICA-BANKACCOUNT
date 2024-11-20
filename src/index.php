@@ -131,3 +131,44 @@ $bankAccountPerson = new NationalBankAccount(500, "EUR", $person);
 pl('--------- [Start testing International account] --------');
 $person2 = new Person("Jane", "453675869234", "jane.doe@invalid-com");
 $bankAccountPerson2 = new InternationalBankAccount(400, "EUR", $person);
+
+pl('--------- [Start testing Fraud System Deposit Transaction] --------');
+$bankAccount5 = new BankAccount(700);
+pl("My balance: " . number_format($bankAccount5->getBalance(), 1));
+pl('Doing transaction deposit (+23000) with current balance ' . number_format($bankAccount5->getBalance(),1));
+try{
+    $bankAccount5->transaction(new DepositTransaction(23000));
+}catch (FailedTransactionException $e) {
+    pl(    $e->getMessage());
+}
+pl('My balance after failed last transaction : ' . number_format($bankAccount5->getBalance(),1));
+pl('Doing transaction deposit (+6000) with current balance ' . number_format($bankAccount5->getBalance(),1));
+try{
+    $bankAccount5->transaction(new DepositTransaction(6000));
+}catch (FailedTransactionException $e) {
+    pl(    $e->getMessage());
+}
+pl('My new balance after deposit (+6000) : ' . number_format($bankAccount5->getBalance(),1));
+
+pl('--------- [Start testing Fraud System Withdraw Transaction] --------');
+$bankAccount6 = new BankAccount(1000);
+pl("My balance: " . number_format($bankAccount6->getBalance(), 1));
+pl('Doing transaction withdrawal (-300) with current balance ' . number_format($bankAccount6->getBalance(), 1));
+try {
+    $bankAccount6->transaction(new WithdrawTransaction(300));
+}catch(FailedTransactionException $e) {
+    pl($e->getMessage());
+}
+pl('My new balance after withdrawal (-300) with funds : ' . number_format($bankAccount6->getBalance(), 1));
+pl('Doing transaction withdrawal (-6500) with current balance ' . number_format($bankAccount6->getBalance(), 1));
+try{
+    $bankAccount6->transaction(new WithdrawTransaction(6500));
+}catch (FailedTransactionException $e) {
+    pl($e->getMessage());
+}
+pl('My balance after failed last transaction : ' . number_format($bankAccount6->getBalance(),1));
+
+
+
+
+

@@ -47,7 +47,6 @@ class BankAccount extends BankAccountException implements BackAccountInterface
             throw new BankAccountException($e->getMessage(), $e->getCode());
         } catch(InvalidOverdraftFundsException $e) {
             throw new FailedTransactionException($e->getMessage(), $e->getCode());
-
         }
       } else {
         throw new BankAccountException(" Error: The account is already closed");
