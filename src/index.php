@@ -122,13 +122,13 @@ $bankAccount4 = new InternationalBankAccount(300);
 pl("My balance: " . number_format($bankAccount4->getBalance(),1) . "€  (" . $bankAccount4->getCurrency() . ")") ;
 pl("My balance converted: " . number_format($bankAccount4->getConvertedBalance(),2) . " $ (" . $bankAccount4->getConvertedCurrency() . ")");
 
-pl('--------- [Start testing national account] --------');
+pl('--------- [Start testing Valid Email account] --------');
 
 $person = new Person("John", "123456783459", "john.doe@gmail.com", "");
 
 $bankAccountPerson = new NationalBankAccount(500, "EUR", $person);
 
-pl('--------- [Start testing International account] --------');
+pl('--------- [Start testing Invalid Email account] --------');
 $person2 = new Person("Jane", "453675869234", "jane.doe@invalid-com", "");
 $bankAccountPerson2 = new InternationalBankAccount(400, "EUR", $person);
 
@@ -167,6 +167,14 @@ try{
     pl($e->getMessage());
 }
 pl('My balance after failed last transaction : ' . number_format($bankAccount6->getBalance(),1));
+
+pl('--------- [Start testing IBAN Validation Valid] --------');
+$personIBAN = new Person('Joel','12', 'joelmesash@gmail.com', 'ES6000491500051234567892');
+$bankAccountPerson3 = new InternationalBankAccount("600", "EUR", $personIBAN);
+
+pl('--------- [Start testing IBAN Validation Invalid] --------'); 
+$personIBAN2 = new Person("Victor", "14", "victorlucumi@gmail.com", "ho89370400440me2013000");
+$bankAccountPerson4 = new NationalBankAccount("1000", "EUR", $personIBAN2);
 
 
 
