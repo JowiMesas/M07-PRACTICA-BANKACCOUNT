@@ -71,4 +71,28 @@ trait ApiTrait {
         }
         return $fraud;
     }
+
+ function validateIBAN(string $iban) {
+    $ch = curl_init();
+    $api = "https://api.api-ninjas.com/v1/iban?iban=$iban";
+    curl_setopt($ch, CURLOPT_URL, value: $api);
+    curl_setopt_array($ch, array(
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_HTTPHEADER => 'cmfo/+Bi0+I+lB/fVgQpnA==17Pvdklk5mWrI1tp',
+        CURLOPT_SSL_VERIFYPEER => false,
+    ));
+    $result = curl_exec($ch);
+    curl_close($ch);
+    $convertJson = json_decode ($result, true);
+    if($convertJson["valid"]) {
+        return [
+            'valid' => true,
+            'bank_name' => $convertJson['bank_name'] ?? 'Banco Desconocido',
+        ];
+    } else {
+        return [
+            'valid' => false
+        ];
+    }
+}
 }

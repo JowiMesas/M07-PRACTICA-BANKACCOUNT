@@ -124,12 +124,12 @@ pl("My balance converted: " . number_format($bankAccount4->getConvertedBalance()
 
 pl('--------- [Start testing national account] --------');
 
-$person = new Person("John", "123456783459", "john.doe@gmail.com");
+$person = new Person("John", "123456783459", "john.doe@gmail.com", "");
 
 $bankAccountPerson = new NationalBankAccount(500, "EUR", $person);
 
 pl('--------- [Start testing International account] --------');
-$person2 = new Person("Jane", "453675869234", "jane.doe@invalid-com");
+$person2 = new Person("Jane", "453675869234", "jane.doe@invalid-com", "");
 $bankAccountPerson2 = new InternationalBankAccount(400, "EUR", $person);
 
 pl('--------- [Start testing Fraud System Deposit Transaction] --------');
