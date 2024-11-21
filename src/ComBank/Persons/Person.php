@@ -20,14 +20,21 @@ class Person {
             pl("validating email: " . $email);
             pl(mixed: "Error: Invalid email address: " . $email);
     }
-    if($validateIban['valid']) {
-        $this->iban = $iban;
-        $this->bankName = $validateIban['bank_name'];
-        pl("IBAN is valid!". $this->getIban());
-        pl("Name of Bank: ". $this->getBankName());
-
+    if ($iban !== null) {
+        $validateIban = $this->validateIban($iban);
+        if ($validateIban['valid']) {
+            $this->iban = $iban;
+            $this->bankName = $validateIban['bank_name'];
+            pl("IBAN is valid!!: " . $this->getIban());
+            pl("Name of Bank: " . $this->getBankName());
+        } else {
+            pl("Invalid IBAN !!! ");
+            pl("IBAN incorrect:  " . $iban);
+        }
     } else {
-        pl("Invalid IBAN !!!". $iban);
+        $this->iban = null;
+        $this->bankName = null;
+        pl("No IBAN provided.");
     }
 }
     public function getEmail()

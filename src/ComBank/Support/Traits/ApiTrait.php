@@ -70,7 +70,13 @@ trait ApiTrait {
         }
         return $fraud;
     }
-    function validateIBAN(string $iban) {
+    function validateIBAN(?string $iban) {
+        if ($iban === null) {
+            return [
+                'valid' => false,
+                'bank_name' => null,
+            ];
+        }
     $ch = curl_init();
     $api = "https://api.api-ninjas.com/v1/iban?iban=$iban";
     curl_setopt($ch, CURLOPT_URL, value: $api);
@@ -87,7 +93,7 @@ trait ApiTrait {
         if($convertJson["valid"]) {
             return [
                 'valid' => true,
-                'bank_name' => $convertJson['bank_name'] ?? 'Banco Desconocido',
+                'bank_name' => $convertJson['bank_name'] ?? 'Bank Unkown',
             ];
         } else {
             return [

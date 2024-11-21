@@ -124,12 +124,12 @@ pl("My balance converted: " . number_format($bankAccount4->getConvertedBalance()
 
 pl('--------- [Start testing Valid Email account] --------');
 
-$person = new Person("John", "123456783459", "john.doe@gmail.com", "");
+$person = new Person("John", "123456783459", "john.doe@gmail.com");
 
 $bankAccountPerson = new NationalBankAccount(500, "EUR", $person);
 
 pl('--------- [Start testing Invalid Email account] --------');
-$person2 = new Person("Jane", "453675869234", "jane.doe@invalid-com", "");
+$person2 = new Person("Jane", "453675869234", "jane.doe@invalid-com");
 $bankAccountPerson2 = new InternationalBankAccount(400, "EUR", $person);
 
 pl('--------- [Start testing Fraud System Deposit Transaction] --------');
@@ -148,7 +148,7 @@ try{
 }catch (FailedTransactionException $e) {
     pl(    $e->getMessage());
 }
-pl('My new balance after deposit (+6000) : ' . number_format($bankAccount5->getBalance(),1));
+pl('My new balance after deposit (+6000) : ' . number_format($bankAccount5->getBalance(),decimals: 1));
 
 pl('--------- [Start testing Fraud System Withdraw Transaction] --------');
 $bankAccount6 = new BankAccount(1000);
