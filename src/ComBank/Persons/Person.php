@@ -6,9 +6,9 @@ class Person {
     private $name;
     private $idCard;
     private $email;
-    private $iban = null;
+    private $iban;
     private $bankName;
-    public function __construct($name, $idCard, $email, $iban){
+    public function __construct($name, $idCard, $email, $iban = null){
         $this-> name = $name;
         $this->idCard = $idCard;
         $validateIban = $this->validateIban($iban);

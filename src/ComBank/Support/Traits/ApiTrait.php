@@ -63,7 +63,6 @@ trait ApiTrait {
                         $fraud = true;
                         break;
                     } else {
-                        var_dump($convertJson[$key]["action"]==BankTransactionInterface::TRANSACTION_BLOCKED);
                         $fraud = false;
                     }
                 }
@@ -84,15 +83,17 @@ trait ApiTrait {
     $result = curl_exec($ch);
     curl_close($ch);
     $convertJson = json_decode ($result, true);
-    if($convertJson["valid"]) {
-        return [
-            'valid' => true,
-            'bank_name' => $convertJson['bank_name'] ?? 'Banco Desconocido',
-        ];
-    } else {
-        return [
-            'valid' => false
-        ];
+    if(isset($convertJson['valid'])) {
+        if($convertJson["valid"]) {
+            return [
+                'valid' => true,
+                'bank_name' => $convertJson['bank_name'] ?? 'Banco Desconocido',
+            ];
+        } else {
+            return [
+                'valid' => false
+            ];
+        }
     }
 }
 }
